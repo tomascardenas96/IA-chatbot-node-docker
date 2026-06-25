@@ -1,0 +1,9 @@
+export type ErrorCode =
+  | 'INVALID_CREDENTIALS'
+  | 'EMAIL_ALREADY_EXISTS'
+  | 'NOT_FOUND'
+  | 'UNAUTHORIZED'
+  | 'BAD_REQUEST'
+  | 'FORBIDDEN'
+  | 'VALIDATION_ERROR'
+  | 'INVALID_JSON';
