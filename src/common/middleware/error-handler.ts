@@ -4,7 +4,7 @@ import { AppError } from '../errors/app-error';
 
 export const errorHandler = (
   err: unknown,
-  _req: Request,
+  req: Request,
   res: Response,
   _next: NextFunction,
 ): void => {
@@ -16,6 +16,16 @@ export const errorHandler = (
         message: issue.message,
       })),
     });
+    return;
+  }
+
+  if (
+    err instanceof SyntaxError &&
+    'statusCode' in err &&
+    err.statusCode === 400 &&
+    'body' in err
+  ) {
+    res.status(err.statusCode).json({ message: 'Invalid JSON in request body' });
     return;
   }
 
