@@ -29,6 +29,7 @@ model User {
   role          Role           @default(user)
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
+  deletedAt     DateTime?
   conversations Conversation[]
 }
 
@@ -37,7 +38,7 @@ model Conversation {
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   messages  Message[]
-  user      User      @relation(fields: [userId], references: [id])
+  user      User      @relation(fields: [userId], references: [id], onDelete: Restrict)
   userId    String
 
   @@index([userId])
@@ -50,4 +51,6 @@ model Message {
   createdAt      DateTime     @default(now())
   conversationId String
   conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+
+  @@index([conversationId])
 }
