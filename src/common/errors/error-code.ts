@@ -6,4 +6,6 @@ export type ErrorCode =
   | 'BAD_REQUEST'
   | 'FORBIDDEN'
   | 'VALIDATION_ERROR'
-  | 'INVALID_JSON';
+  | 'INVALID_JSON'
+  | 'MISSING_TOKEN'
+  | 'INVALID_TOKEN';
